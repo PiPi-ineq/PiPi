@@ -1,0 +1,26 @@
+Package: PiPi
+Type: Package
+Title: Calculate Inequalities Across Social Classes
+Version: 0.1.0
+Authors@R: 
+    c(person(given = "Pál",
+             family = "Susánszky",
+             role = "aut",
+             email = "susanszky.pal@tk.mta.hu"),
+      person(given = "Gergely",
+             family = "Tóth",
+             role = c("aut", "cre"),
+             email = "toth.gergely@kre.hu")        
+    )
+Description: Calculatw inequalities across social classes if the target variable can coded as a dummy variable (0, 1).
+    To define the level of inequality the Lorenz Curve is used, which shows the distribution of participants 
+    (e.g. voters) across the pre-defined social classes (e.g. level of education). 
+Imports:
+    graphics,
+    stats,
+    utils, 
+    descr
+License: TODO
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
