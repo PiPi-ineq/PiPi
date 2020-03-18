@@ -113,7 +113,7 @@ plot.gegini <- function(
 		  x <- x$inequalityTable
 	 }
 	 L <- c(0,cumsum(x$p))
-	 K <- c(0,cumsum(x$k))*1/max(cumsum(kis$k))
+	 K <- c(0,cumsum(x$k)) # TODO: *1/max(cumsum(kis$k)) - its value is 1, and uses an external data.frame (`kis`)
 	 if (!is.null(value))
 		  main <- paste0(main, "\n", "gegini=", round(value,4)*100, "%")
   plot(K, L, type = "l", main = paste(main, main2, sep="\n"), lwd = lwd, xlab = xlab, 
