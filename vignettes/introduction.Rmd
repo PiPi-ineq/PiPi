@@ -22,7 +22,13 @@ Load example data and create `geginiData` objects.
 
 ```{r}
 data(sam.data)
-data <- geginiData(srvData=sam.data, cmpVar='cntry', ineqVar='vote', groupingVars='edu', naomit=TRUE) 
+data <- geginiData(
+  srvData=sam.data, 
+  cmpVar='cntry', 
+  ineqVar='vote', 
+  groupingVars='edu', 
+  naomit=TRUE
+) 
 ```
 
 TODO

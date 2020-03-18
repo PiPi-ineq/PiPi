@@ -51,38 +51,38 @@ PiPi <- function(dta=list(), ...) {
 #' @example inst/examples/pipitest_ex.R
 #TODO: How does this function relate to PiPiBagging()?
 PiPi.Test <- function(dta=NULL, ns=100, prev=NULL, .progress=TRUE, prob=.95, ...) {
-	  if (is.null(prev)) {
-		    prev <- list(PiPi0=NULL, geginiRaw0=NULL, StrMax0=NULL, StrMin0=NULL)
-		    prev$PiPiOriginal <- PiPi(dta, ...)
-	  } 
-	  empi <- cbind(dta$df, Np=dta$df$p*dta$rv,Nt=dta$str)
-	  empi$Nnp <- empi$Nt-empi$Np
-	  empi$names <- rownames(empi) 
-	  dd <- apply(empi[,c('Np', 'Nnp', 'names')],1, function(x) cbind(group=x[3], rv=c(rep(1, x[1]), rep(0, x[2]))))
-	  dd <- Reduce(function(...) merge(..., all=TRUE), dd)
-	  dd$rv <- as.numeric(as.character(dd$rv))
-   if (.progress) {
-			  pb <- txtProgressBar(style = 3)
-		 }
-	  for (i in 1:ns) {
-		    if (.progress) setTxtProgressBar(pb, i/ns)
-		    resamp <- data.frame(group=dd[sample(1:nrow(dd), nrow(dd), replace=FALSE),'group'], rv=dd[sample(1:nrow(dd), nrow(dd), replace=FALSE),'rv'])
-		    dtaRS <- geginiData(srvData=resamp, ineqVar='rv', groupingVars='group', weight=NULL, naomit=TRUE) 
-		    cache <- PiPi(dtaRS[[1]], ...)
-		    prev$PiPi0 		<- c(prev$PiPi0, cache$PiPi)
-		    prev$geginiRaw0 <- c(prev$geginiRaw0, cache$geginiRaw)
-		    prev$StrMax0 	<- c(prev$StrMax0, cache$StrMax)
-		    prev$StrMin0 	<- c(prev$StrMin0, cache$StrMin)
-	  }
-	  if (.progress) {close(pb) }
-	  prev$PiPi0.mean 		<- mean(prev$PiPi0)
-	  prev$PiPi0.median 		<- median(prev$PiPi0)
-	  q	<- c((1-prob)/2, (1-(1-prob)/2))
-	  prev$PiPi0.CI_lower 	<- sort(prev$PiPi0)[round(length(prev$PiPi0)*q[1])]
-	  prev$PiPi0.CI_upper 	<- sort(prev$PiPi0)[round(length(prev$PiPi0)*q[2])]
-	  x						<- prev$PiPi0
-	  prev$wilcox0			<- wilcox.test(x, mu = prev$PiPiOriginal$PiPi, conf.level = prob)
-	  print(prev$wilcox0)
-	  class(prev) 	<- 'PiPi.Test'
-	  prev
+	 if (is.null(prev)) {
+		  prev <- list(PiPi0=NULL, geginiRaw0=NULL, StrMax0=NULL, StrMin0=NULL)
+		  prev$PiPiOriginal <- PiPi(dta, ...)
+	 } 
+	 empi <- cbind(dta$df, Np=dta$df$p*dta$rv,Nt=dta$str)
+	 empi$Nnp <- empi$Nt-empi$Np
+	 empi$names <- rownames(empi) 
+	 dd <- apply(empi[,c('Np', 'Nnp', 'names')],1, function(x) cbind(group=x[3], rv=c(rep(1, x[1]), rep(0, x[2]))))
+	 dd <- Reduce(function(...) merge(..., all=TRUE), dd)
+	 dd$rv <- as.numeric(as.character(dd$rv))
+  if (.progress) {
+			 pb <- txtProgressBar(style = 3)
+		}
+	 for (i in 1:ns) {
+		  if (.progress) setTxtProgressBar(pb, i/ns)
+		  resamp <- data.frame(group=dd[sample(1:nrow(dd), nrow(dd), replace=FALSE),'group'], rv=dd[sample(1:nrow(dd), nrow(dd), replace=FALSE),'rv'])
+		  dtaRS <- geginiData(srvData=resamp, ineqVar='rv', groupingVars='group', weight=NULL, naomit=TRUE) 
+		  cache <- PiPi(dtaRS[[1]], ...)
+		  prev$PiPi0 		<- c(prev$PiPi0, cache$PiPi)
+		  prev$geginiRaw0 <- c(prev$geginiRaw0, cache$geginiRaw)
+		  prev$StrMax0 	<- c(prev$StrMax0, cache$StrMax)
+		  prev$StrMin0 	<- c(prev$StrMin0, cache$StrMin)
+	 }
+	 if (.progress) {close(pb) }
+	 prev$PiPi0.mean 		<- mean(prev$PiPi0)
+	 prev$PiPi0.median 		<- median(prev$PiPi0)
+	 q	<- c((1-prob)/2, (1-(1-prob)/2))
+	 prev$PiPi0.CI_lower 	<- sort(prev$PiPi0)[round(length(prev$PiPi0)*q[1])]
+	 prev$PiPi0.CI_upper 	<- sort(prev$PiPi0)[round(length(prev$PiPi0)*q[2])]
+	 x						<- prev$PiPi0
+	 prev$wilcox0			<- wilcox.test(x, mu = prev$PiPiOriginal$PiPi, conf.level = prob)
+	 print(prev$wilcox0)
+	 class(prev) 	<- 'PiPi.Test'
+	 prev
 }
