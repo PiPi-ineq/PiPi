@@ -72,7 +72,7 @@ gegini <- function(df=NULL, p=NULL, k=NULL, normalize = TRUE, plot=FALSE, return
 			   stop("Please correct the k values, or set 'normalize' parameter to 'TRUE'!")
 		  }
 	 }
-	 x		<- data.frame(p, k, stringsAsFactors=F)
+	 x		<- data.frame(p, k, stringsAsFactors=FALSE)
 	 if (!is.null(df)) {
 		  rownames(x) <- rownames(df) }
 	 x$slope	<- x$p/x$k   

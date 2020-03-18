@@ -35,7 +35,7 @@ PiPiBagging <- function(dta=NULL, ns=100, prev=NULL, .progress=TRUE, prob=0.95, 
 	 empi$Nnp <- empi$Nt-empi$Np
 	 empi$names <- rownames(empi) 
 	 dd <- apply(empi[,c('Np', 'Nnp', 'names')],1, function(x) cbind(group=x[3], rv=c(rep(1, x[1]), rep(0, x[2]))))
-	 dd <- Reduce(function(...) merge(..., all=T), dd)
+	 dd <- Reduce(function(...) merge(..., all=TRUE), dd)
 	 dd$rv <- as.numeric(as.character(dd$rv))
   if (.progress) {
 			 pb <- txtProgressBar(style = 3)

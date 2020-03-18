@@ -50,7 +50,7 @@ PiPi <- function(dta=list(), ...) {
 #' @export 
 #' @example examples/pipitest_ex.R
 #TODO: How does this function relate to PiPiBagging()?
-PiPi.Test <- function(dta=NULL, ns=100, prev=NULL, .progress=T, prob=.95, ...) {
+PiPi.Test <- function(dta=NULL, ns=100, prev=NULL, .progress=TRUE, prob=.95, ...) {
 	  if (is.null(prev)) {
 		    prev <- list(PiPi0=NULL, geginiRaw0=NULL, StrMax0=NULL, StrMin0=NULL)
 		    prev$PiPiOriginal <- PiPi(dta, ...)
@@ -66,7 +66,7 @@ PiPi.Test <- function(dta=NULL, ns=100, prev=NULL, .progress=T, prob=.95, ...) {
 		 }
 	  for (i in 1:ns) {
 		    if (.progress) setTxtProgressBar(pb, i/ns)
-		    resamp <- data.frame(group=dd[sample(1:nrow(dd), nrow(dd), replace=F),'group'], rv=dd[sample(1:nrow(dd), nrow(dd), replace=F),'rv'])
+		    resamp <- data.frame(group=dd[sample(1:nrow(dd), nrow(dd), replace=FALSE),'group'], rv=dd[sample(1:nrow(dd), nrow(dd), replace=FALSE),'rv'])
 		    dtaRS <- geginiData(srvData=resamp, ineqVar='rv', groupingVars='group', weight=NULL, naomit=TRUE) 
 		    cache <- PiPi(dtaRS[[1]], ...)
 		    prev$PiPi0 		<- c(prev$PiPi0, cache$PiPi)
