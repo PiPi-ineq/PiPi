@@ -31,7 +31,7 @@
 #'   Between Odds Ratio and the Educational Gini Coefficient. The Journal of Mathematical 
 #'   Sociology, 39(4), 280-303.
 #' @export 
-#' @example examples/gegini_ex.R
+#' @example inst/examples/gegini_ex.R
 #' 
 gegini <- function(df=NULL, p=NULL, k=NULL, normalize = TRUE, plot=FALSE, returnTable=FALSE, ...) {
 	 if (!is.null(df)) {

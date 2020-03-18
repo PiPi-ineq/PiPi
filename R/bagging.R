@@ -24,7 +24,7 @@
 #'   resampling methods: 2013 methods-of-payment survey questionnaire. In The Econometrics of 
 #'   Complex Survey Data: Theory and Applications (pp. 87-106). Emerald Publishing Limited.  
 #' @export
-#' @example examples/bagging_ex.R
+#' @example inst/examples/bagging_ex.R
 #TODO: the return value has undocumented slots
 PiPiBagging <- function(dta=NULL, ns=100, prev=NULL, .progress=TRUE, prob=0.95, ...) {
 	 if (is.null(prev)) {

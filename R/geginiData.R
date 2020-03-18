@@ -23,7 +23,7 @@
 #' @return A list that contains as many \code{geginiData} objects as there are unique categories in 
 #'   the "cmpVar" vector.
 #' @export 
-#' @example examples/geginiData_ex.R
+#' @example inst/examples/geginiData_ex.R
 #' 
 geginiData <- function(srvData=NULL, cmpVar=NULL, ineqVar=NULL, groupingVars=NULL, weight=NULL, naomit=TRUE) {
 	 if (is.null(ineqVar)) {

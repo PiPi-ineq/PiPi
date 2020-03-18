@@ -22,7 +22,7 @@
 #' }
 #' @seealso \code{\link{gegini}}
 #' @export
-#' @example examples/pipi_ex.R
+#' @example inst/examples/pipi_ex.R
 #'   
 #TODO: the function does not have this parameter: #minMethod	: can be "structural" or "statistical". The default is "structural" - the determination of the minimum value based on only structural factors. In case of "statistical", the StrMin value is an expected value of the minimum based on resampling.
 PiPi <- function(dta=list(), ...) {
@@ -48,7 +48,7 @@ PiPi <- function(dta=list(), ...) {
 #' @param ... further arguments passed to \code{PiPi}
 #' @return an object of class \code{PiPi.test}
 #' @export 
-#' @example examples/pipitest_ex.R
+#' @example inst/examples/pipitest_ex.R
 #TODO: How does this function relate to PiPiBagging()?
 PiPi.Test <- function(dta=NULL, ns=100, prev=NULL, .progress=TRUE, prob=.95, ...) {
 	  if (is.null(prev)) {
