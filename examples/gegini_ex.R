@@ -1,13 +1,17 @@
+## load the data
+data(sam.data)
+
+## prepare the data
+data <- geginiData(
+  srvData = sam.data,
+  cmpVar = 'cntry',
+  ineqVar = 'vote',
+  groupingVars = 'edu',
+  naomit = TRUE
+)
+
 dta <- data[[levels(sam.data$cntry)[1]]]
 gegini(dta[[1]])
-
-data <- geginiData(
-  srvData=sam.data, 
-  cmpVar='cntry', 
-  ineqVar='vote', 
-  groupingVars='edu', 
-  naomit=TRUE
-) 
 
 par(mfrow=c(2,2))
 gegini(data[['A']]$df, plot=TRUE, main2="A Country")
