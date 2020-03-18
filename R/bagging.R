@@ -57,7 +57,7 @@ PiPiBagging <- function(dta=NULL, ns=100, prev=NULL, .progress=TRUE, prob=0.95, 
 	 prev$PiPi.CI_lower 	<- sort(prev$PiPi)[round(length(prev$PiPi)*q[1])]
 	 prev$PiPi.CI_upper 	<- sort(prev$PiPi)[round(length(prev$PiPi)*q[2])]
 	 class(prev) 	<- 'PiPiBag'
-	 return(prev)	
+	 prev
 }
 
 #' Compare PiPi Bags Objects
@@ -74,6 +74,6 @@ PiPibags.Test <- function(x, y, prob=.95, ...) {
 	 if (class(x)!="PiPiBag" | class(y)!="PiPiBag")  {
 		  stop("x and y objects should be 'PiPiBag' objects!") }
 	 wilcox <- wilcox.test(x$PiPi, y$PiPi, conf.int = TRUE, conf.level = prob, ...)
-	 return(wilcox)
+	 wilcox
 }
 

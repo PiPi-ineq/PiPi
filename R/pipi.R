@@ -33,7 +33,7 @@ PiPi <- function(dta=list(), ...) {
   if (PiPiValue<0) PiPiValue <- 0
   PiPi		<- list(data=dta, PiPi=PiPiValue, geginiRaw=baseValue, StrMax=maxValue, StrMin=minValue)
   class(PiPi)	<- "PiPi"
-  return(PiPi)
+  PiPi
 }
 
 
@@ -84,5 +84,5 @@ PiPi.Test <- function(dta=NULL, ns=100, prev=NULL, .progress=T, prob=.95, ...) {
 	  prev$wilcox0			<- wilcox.test(x, mu = prev$PiPiOriginal$PiPi, conf.level = prob)
 	  print(prev$wilcox0)
 	  class(prev) 	<- 'PiPi.Test'
-	  return(prev)	
+	  prev
 }

@@ -75,5 +75,5 @@ geginiData <- function(srvData=NULL, cmpVar=NULL, ineqVar=NULL, groupingVars=NUL
 		  geginiDatas[[cmprs[i]]][['str']]			<- strukt
 		  class(geginiDatas[[cmprs[i]]]) 			<- "geginiData"
 	 }
-	 return(geginiDatas)
+	 geginiDatas
 }

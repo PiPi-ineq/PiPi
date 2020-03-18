@@ -88,7 +88,7 @@ gegini <- function(df=NULL, p=NULL, k=NULL, normalize = TRUE, plot=FALSE, return
 	 if (returnTable) {
 		  gegini 		 <- list(gegini=gegini, inequalityTable=x)
 		  class(gegini) <- 'geginiTable' }
-	 return(gegini)
+	 gegini
 }
 
 #' Plot the GEGINI-Index
@@ -228,5 +228,5 @@ geginiMax <- function(strukt=NULL, rv=NULL) {
 	 xx	<- data.frame(cbind(ment.rv, ment.str))
 	 geginiMax <- suppressWarnings(max(apply(xx, 1, function(x) gegini(data.frame(p=x[1:(length(x)/2)], k=x[((length(x)/2)+1):length(x)])))))
 	 class(geginiMax) <- "geginiMax"
-	 return(geginiMax)
+	 geginiMax
 }
