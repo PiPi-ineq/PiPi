@@ -65,12 +65,12 @@ geginiData <- function(srvData=NULL, cmpVar=NULL, ineqVar=NULL, groupingVars=NUL
 	 for (i in 1:length(cmprs)) {
 		  k		<- dataValid[dataValid$cmpVar==cmprs[i],]																  #select a given subgroup
 		  rv		<- as.numeric(crosstab(dataValid$ineqVar, dataValid$cmpVar, weights=dataValid$weight, plot=F)$tab[2,])[i] #get the number of  participant (weighted)
-		  rv.sh	<- as.numeric(crosstab(k$categories,k$ineqVar,prop.c=TRUE, w=k$weight, plot=F)$prop.col[,2])			  #get p rate in df!
-		  strukt	<- as.numeric(crosstab(k$categories,k$ineqVar, w=k$weight, plot=F)$rs) 									  #get k numbers of df
+		  rv.sh	<- as.numeric(crosstab(k$categories,k$ineqVar,prop.c=TRUE, weight=k$weight, plot=F)$prop.col[,2])			  #get p rate in df!
+		  strukt	<- as.numeric(crosstab(k$categories,k$ineqVar, weight=k$weight, plot=F)$rs) 									  #get k numbers of df
 		  tot.sh  <- strukt/sum(strukt)																					  #get k rate of df
 		  geginiDatas[[cmprs[i]]] 		 			<- list()
 		  geginiDatas[[cmprs[i]]][['df']] 			<- data.frame(p=rv.sh, k=tot.sh)
-		  rownames(geginiDatas[[cmprs[i]]][['df']])<- attr(crosstab(k$categories,k$ineqVar,prop.c=TRUE, w=k$weight, plot=F)$rs, "names")
+		  rownames(geginiDatas[[cmprs[i]]][['df']])<- attr(crosstab(k$categories,k$ineqVar,prop.c=TRUE, weight=k$weight, plot=F)$rs, "names")
 		  geginiDatas[[cmprs[i]]][['rv']] 			<- rv
 		  geginiDatas[[cmprs[i]]][['str']]			<- strukt
 		  class(geginiDatas[[cmprs[i]]]) 			<- "geginiData"
