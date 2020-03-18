@@ -43,6 +43,7 @@ PiPi <- function(dta=list(), ...) {
 #' @param ns integerish value; the number of bootstrap replicates
 #' @param prev an object of class \code{PiPiBag}. By providing \code{prev} one can add new 
 #'   resample results to the results of the previous one.
+#' @param .progress logical; whether to show progress bars
 #' @param prob numeric value in the range of [0, 1]; a probability value for CI.
 #' @param ... further arguments passed to \code{PiPi}
 #' @return an object of class \code{PiPi.test}

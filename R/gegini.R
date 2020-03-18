@@ -93,7 +93,7 @@ gegini <- function(df=NULL, p=NULL, k=NULL, normalize = TRUE, plot=FALSE, return
 
 #' Plot the GEGINI-Index
 #' 
-#' @param x an object of class \code{\link{geginiTable}} or a data.frame of \code{p} 
+#' @param x an object of class \code{geginiTable} or a data.frame of \code{p}
 #'   and \code{k} columns (see \code{\link{gegini}}
 #' @param value numeric vector of \code{\link{gegini}} values. Ignored if \code{x} is 
 #'   of class \code{geginiTable}.
@@ -102,6 +102,8 @@ gegini <- function(df=NULL, p=NULL, k=NULL, normalize = TRUE, plot=FALSE, return
 #' @param ylab character string; the label of the \code{y} axis
 #' @param main character string; the title of the plot  
 #' @param texts logical flag; if \code{TRUE} (the default), #TODO ...finish
+#' @param main2 character string; the subtitle of the plot
+#' @param ... further arguments passed to \code{plot}
 #' @seealso See \code{\link{gegini}} for example.
 #' @export
 plot.gegini <- function(

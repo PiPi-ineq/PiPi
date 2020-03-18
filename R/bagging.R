@@ -64,7 +64,7 @@ PiPiBagging <- function(dta=NULL, ns=100, prev=NULL, .progress=TRUE, prob=0.95, 
 #' 
 #' \code{PiPibags.Test} runs two-sample Wilcoxon (Mann-Whitney) test to decide whether 
 #' the difference in inequality values is significant.
-#' @param x,y objects of class \code{\link{PiPibag}}
+#' @param x,y objects of class \code{PiPibag}
 #' @param prob numeric value in the range of [0,1]; the confidence level
 #' @param ... further arguments passed to \code{\link{wilcox.test}}
 #' @return see \code{\link{wilcox.test}}
