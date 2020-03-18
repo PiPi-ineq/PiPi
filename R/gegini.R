@@ -1,5 +1,5 @@
 
-#' Generalized GEGINI
+#' Generalized Educational GINI
 #' 
 #' \code{gegini} calculates and optionally displays the generalized Educational GINI (GEGINI) 
 #' value as a measure of inequality (see References).
