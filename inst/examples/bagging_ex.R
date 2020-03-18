@@ -1,3 +1,5 @@
+\dontrun{
+
 ## load the data
 data(sam.data)
 
@@ -17,3 +19,5 @@ bag2 <- PiPiBagging(dta2, ns=100)
 
 PiPibags.Test(bag1, bag2)
 PiPibags.Test(bag1, bag2, alternative='greater')
+
+}
