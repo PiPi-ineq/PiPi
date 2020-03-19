@@ -27,7 +27,7 @@ if (FALSE) {
   PiPi.Mean<- NULL
   
   for (i in 1:4){
-    dta	<- data[[levels(sam.data$cntry)[i]]]
+    dta<- data[[levels(sam.data$cntry)[i]]]
     bags<- NULL
     bags <- PiPiBagging(dta, ns=100)
     PiPi.Min<- c(PiPi.Min, bags$PiPi.CI_lower) 
@@ -46,7 +46,7 @@ if (FALSE) {
   PiPi(dta)
   
   testV <- PiPi.Test(dta, ns=100)
-  testV$PiPi0.CI_upper 	# random CI - upper limit
+  testV$PiPi0.CI_upper # random CI - upper limit
   testV$PiPiOriginal$PiPi # observed value in the data
   
   bag1 <- PiPiBagging(dta, ns=100)
@@ -100,8 +100,8 @@ if (FALSE) {
   
   
 # Csoportos hívás összehasonlítással
-  res 	<- lapply(dtaAll, PiPi)
-  (pipis 	<- unlist(lapply(res, function(x) x$PiPi)))
+  res <- lapply(dtaAll, PiPi)
+  (pipis <- unlist(lapply(res, function(x) x$PiPi)))
   (geginis <- unlist(lapply(res, function(x) x$geginiRaw)) )
   
   summary(pipis-geginis)
@@ -111,7 +111,7 @@ if (FALSE) {
   
 #Eredeti Minimum fgv alapján:
   res2 <- lapply(dtaAll, PiPi, minMethod="statistical", nsim=100)
-  (pipis 	<- unlist(lapply(res2, function(x) x$PiPi)))
+  (pipis <- unlist(lapply(res2, function(x) x$PiPi)))
   (geginis <- unlist(lapply(res2, function(x) x$geginiRaw)) )
 #in case of statistical min
 #    Min.  1st Qu.   Median     Mean  3rd Qu.     Max. 
@@ -121,7 +121,7 @@ if (FALSE) {
   ############# Bagging (bootstrap)
 #Mivel ez nagyon sok tud lenni, ezért nem lehet egyszerre hívni, hanem országonként kell:
   
-  dta	<- dtaAll[['HU']]
+  dta<- dtaAll[['HU']]
   
   (bags <- PiPiBagging(dta, ns=100))
 # continue a previuos run (már 200 lesz összesen)
@@ -130,7 +130,7 @@ if (FALSE) {
 #EZ a te eredeti verziód alapján:
   
 #Spanyoloknál a legnagyobb az eltérés:
-  dta	<- dtaAll[['ES']]
+  dta<- dtaAll[['ES']]
   (bagsES <- PiPiBagging(dta, ns=100))
   PiPibags.Test(bags, bagsES)
   PiPibags.Test(bags, bagsES, alternative='greater')

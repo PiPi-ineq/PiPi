@@ -34,61 +34,61 @@
 #' @example inst/examples/gegini_ex.R
 #' 
 gegini <- function(df=NULL, p=NULL, k=NULL, normalize = TRUE, plot=FALSE, returnTable=FALSE, ...) {
-	 if (!is.null(df)) {
-		  if (!all(hasName(df, c("p", "k"))))
-			   stop("'df' must contain 'p' and 'k' columns")
-		  p <- df$p
-		  k <- df$k
-	 }	
-	 if (any(p<0)) 
-		  stop("'p' cannot contain negative values!")
-	 if (any(k<0)) 
-		  stop("'k' cannot contain negative values!")
-	 if (all(p==0)) 
-		  stop("'p' cannot contain only 0 values!")
-	 if (all(k==0)) 
-		  stop("'k' cannot contain only 0 values!")
-	 if (length(p) != length(k))
-		  stop("The lengths of the vectors 'p' and 'k' must be the same!")
-	 if (is.null(p) | is.null(k)) 
-		  stop("'p' and 'k' must contain valid values!")
-	 if (!is.numeric(p) | !is.numeric(p))
-		  stop("'p' and 'k' must contain numeric values!")
-	 if (round(sum(p), 6) != 1) {
-		  warning("The sum of p is not equal to 100%!\n", call. = FALSE)
-		  if (normalize) {
-			   warning("'p' vector is normalized\n")
-			   p <- p/sum(p)  
-		  } else {
-			   stop("Please correct the p values, or set 'normalize' parameter to 'TRUE'!")
-		  }
-	 }
-	 if (round(sum(k), 6) != 1) {
-		  warning("The sum of k is not equal to 100%!\n", call. = FALSE)
-		  if (normalize) {
-			   warning("'k' vector is normalized\n")
-			   k <- k/sum(k)  
-		  } else {
-			   stop("Please correct the k values, or set 'normalize' parameter to 'TRUE'!")
-		  }
-	 }
-	 x		<- data.frame(p, k, stringsAsFactors=FALSE)
-	 if (!is.null(df)) {
-		  rownames(x) <- rownames(df) }
-	 x$slope	<- x$p/x$k   
-	 x		<- x[order(x$slope),]
-	 x$cumSum<- cumsum(x$k)
-	 k		<- (x$k*x$p)/2
-	 kk		<- x$p*(1-x$cumSum)
-	 gegini	<- 2*(0.5-(sum(k)+sum(kk)))
-	 class(gegini) <- 'gegini'
-	 if (plot) {
-		  plot.gegini(x, value=gegini, ...)
-	 }
-	 if (returnTable) {
-		  gegini 		 <- list(gegini=gegini, inequalityTable=x)
-		  class(gegini) <- 'geginiTable' }
-	 gegini
+  if (!is.null(df)) {
+    if (!all(hasName(df, c("p", "k"))))
+      stop("'df' must contain 'p' and 'k' columns")
+    p <- df$p
+    k <- df$k
+  }
+  if (any(p<0)) 
+    stop("'p' cannot contain negative values!")
+  if (any(k<0)) 
+    stop("'k' cannot contain negative values!")
+  if (all(p==0)) 
+    stop("'p' cannot contain only 0 values!")
+  if (all(k==0)) 
+    stop("'k' cannot contain only 0 values!")
+  if (length(p) != length(k))
+    stop("The lengths of the vectors 'p' and 'k' must be the same!")
+  if (is.null(p) | is.null(k)) 
+    stop("'p' and 'k' must contain valid values!")
+  if (!is.numeric(p) | !is.numeric(p))
+    stop("'p' and 'k' must contain numeric values!")
+  if (round(sum(p), 6) != 1) {
+    warning("The sum of p is not equal to 100%!\n", call. = FALSE)
+    if (normalize) {
+      warning("'p' vector is normalized\n")
+      p <- p/sum(p)  
+    } else {
+      stop("Please correct the p values, or set 'normalize' parameter to 'TRUE'!")
+    }
+  }
+  if (round(sum(k), 6) != 1) {
+    warning("The sum of k is not equal to 100%!\n", call. = FALSE)
+    if (normalize) {
+      warning("'k' vector is normalized\n")
+      k <- k/sum(k)  
+    } else {
+      stop("Please correct the k values, or set 'normalize' parameter to 'TRUE'!")
+    }
+  }
+  x<- data.frame(p, k, stringsAsFactors=FALSE)
+  if (!is.null(df)) {
+    rownames(x) <- rownames(df) }
+  x$slope<- x$p/x$k   
+  x<- x[order(x$slope),]
+  x$cumSum<- cumsum(x$k)
+  k<- (x$k*x$p)/2
+  kk<- x$p*(1-x$cumSum)
+  gegini<- 2*(0.5-(sum(k)+sum(kk)))
+  class(gegini) <- 'gegini'
+  if (plot) {
+    plot.gegini(x, value=gegini, ...)
+  }
+  if (returnTable) {
+    gegini  <- list(gegini=gegini, inequalityTable=x)
+    class(gegini) <- 'geginiTable' }
+  gegini
 }
 
 #' Plot the GEGINI-Index
@@ -110,26 +110,26 @@ plot.gegini <- function(
   x, value=NULL, lwd = 2, xlab = "p", ylab = "L(p)", 
   main = "GEGINI - Lorenz curve", texts=TRUE, main2="", ...
 ) {
-	 if (class(x) == 'geginiTable') {
-		  value	<- as.numeric(x$gegini)
-		  x <- x$inequalityTable
-	 }
-	 L <- c(0,cumsum(x$p))
-	 K <- c(0,cumsum(x$k)) # TODO: *1/max(cumsum(kis$k)) - its value is 1, and uses an external data.frame (`kis`)
-	 if (!is.null(value))
-		  main <- paste0(main, "\n", "gegini=", round(value,4)*100, "%")
+  if (class(x) == 'geginiTable') {
+    value<- as.numeric(x$gegini)
+    x <- x$inequalityTable
+  }
+  L <- c(0,cumsum(x$p))
+  K <- c(0,cumsum(x$k)) # TODO: *1/max(cumsum(kis$k)) - its value is 1, and uses an external data.frame (`kis`)
+  if (!is.null(value))
+    main <- paste0(main, "\n", "gegini=", round(value,4)*100, "%")
   plot(K, L, type = "l", main = paste(main, main2, sep="\n"), lwd = lwd, xlab = xlab, 
     ylab = ylab, xaxs = "i", yaxs = "i", ...)
   abline(0, max(L)) 
-	 points(K,L,pch=19, cex=2, col="blue")
-	 if (texts) {
-		  LL <- apply(cbind(L[-length(L)], L[-1]),1,mean)
-		  KK <- apply(cbind(K[-length(K)], K[-1]),1,mean)
-		  half <- round(nrow(x)/2)
-		  alls <- nrow(x)
-		  text(KK[1:half],LL[1:half],labels=rownames(x)[1:half], cex=0.7, adj=c(0,0))
-		  text(KK[(half+1):alls],LL[(half+1):alls],labels=rownames(x)[(half+1):alls], cex=0.7, adj=c(1,1))
-	 }	
+  points(K,L,pch=19, cex=2, col="blue")
+  if (texts) {
+    LL <- apply(cbind(L[-length(L)], L[-1]),1,mean)
+    KK <- apply(cbind(K[-length(K)], K[-1]),1,mean)
+    half <- round(nrow(x)/2)
+    alls <- nrow(x)
+    text(KK[1:half],LL[1:half],labels=rownames(x)[1:half], cex=0.7, adj=c(0,0))
+    text(KK[(half+1):alls],LL[(half+1):alls],labels=rownames(x)[(half+1):alls], cex=0.7, adj=c(1,1))
+  }
   invisible(NULL)
 }
 
@@ -140,93 +140,93 @@ plot.gegini <- function(
 #' @return an object of class \code{geginiMax}
 #' @keywords internal
 geginiMax <- function(strukt=NULL, rv=NULL) {
-	 if (is.null(strukt) | is.null(rv)) {
-		  stop("Please define valid 'strukt' and 'rv' values!") }
-	 hossz 	<- length(strukt)
-	 ixx		<- 1:hossz
-	 ix		<- ixx
-	 if (rv > sum(strukt)) {
-		  warning("There are more participants than the entire population! It has been adjusted to sum of participant! Be careful when interpreting the result!", call. = FALSE)	
-		  rv	<- sum(strukt)
-	 }
-	 RV 		<- rv
+  if (is.null(strukt) | is.null(rv)) {
+    stop("Please define valid 'strukt' and 'rv' values!") }
+  hossz <- length(strukt)
+  ixx<- 1:hossz
+  ix<- ixx
+  if (rv > sum(strukt)) {
+    warning("There are more participants than the entire population! It has been adjusted to sum of participant! Be careful when interpreting the result!", call. = FALSE)
+    rv<- sum(strukt)
+  }
+  RV <- rv
   
-	 ment.str 	<- NULL
-	 ment.rv 	<- NULL
-	 ment.ix		<- NULL
-	 holSTOP.base <- 0
+  ment.str <- NULL
+  ment.rv <- NULL
+  ment.ix<- NULL
+  holSTOP.base <- 0
   
-	 CS0 <- 1
-	 CS 	<- 1
-	 szintlepes <- list()
-	 szintlepes[[1]]						<- list()
-	 szintlepes[[1]][["ix.tmp"]]			<- ix 
-	 szintlepes[[1]][["holSTOP.base"]]	<- 1
-	 holSTOP								<- 1
+  CS0 <- 1
+  CS <- 1
+  szintlepes <- list()
+  szintlepes[[1]]<- list()
+  szintlepes[[1]][["ix.tmp"]]<- ix 
+  szintlepes[[1]][["holSTOP.base"]]<- 1
+  holSTOP<- 1
   
-	 while (CS0 == 1) {
-		  CS 	<- 1
-		  szintlepes[[length(szintlepes)]][["ix.tmp"]]		<- ix
-		  szintlepes[[length(szintlepes)]][["holSTOP.base"]]	<- holSTOP	
-#		df.generator(ix)
-		  cummulalt 	<- cumsum(strukt[ix])
-		  holSTOP 	<- min(which(cummulalt >= RV))			
-		  ment.str	<- rbind(ment.str, strukt[ix])
-		  if (holSTOP > 1) {
-			   ment.rv <- rbind(ment.rv, c(strukt[ix][1:holSTOP-1], RV-cummulalt[holSTOP-1], rep(0, hossz-holSTOP)))
-		  } else {
-			   ment.rv	<- rbind(ment.rv, c(RV, rep(0, hossz-1)))
-		  }
-		  ment.ix		<- rbind(ment.ix, ix)
-		  
-		  if (holSTOP > szintlepes[[length(szintlepes)]][["holSTOP.base"]] & (holSTOP != hossz)) {  # tehát ha nagyobb szintre lép, és az nem az utolsó szint
-			   szintlepes[[length(szintlepes)+1]]					<- list()
-			   szintlepes[[length(szintlepes)]][["holSTOP.base"]]	<- holSTOP
-			   ix <- c(ix[1:(holSTOP-1)], ix[holSTOP:hossz][c((hossz-holSTOP+1), 1:(hossz-holSTOP))])	# léptetek egyet
-			   szintlepes[[length(szintlepes)]][["ix.tmp"]]		<- ix
-		  } else {			# ha a végére ért, vagy ha azonos szinten maradt
-			   if (holSTOP != hossz & holSTOP != 1) {
-				    holSTOP	<- szintlepes[[length(szintlepes)]][["holSTOP.base"]]
-				    ix <- c(ix[1:(holSTOP-1)], ix[holSTOP:hossz][c((hossz-holSTOP+1), 1:(hossz-holSTOP))])
-			   } else {
-				    if (holSTOP == hossz) {
-					     if (length(szintlepes) > 1) { # Ha a végére esik a telítődés, de nem alapból, akkor önmaga marad (következő szintre fog lépni
-						      ix <- ix
-					     } else {
-						      ix <- ix[c(hossz, 1:(hossz-1))]
-						      holSTOP	<- szintlepes[[length(szintlepes)]][["holSTOP.base"]]
-						      CS <- 0
-					     }
-				    } else {
-					     ix <- ix[c(hossz, 1:(hossz-1))]
-				    }
-			   }
-		  } 
-		  if (length(szintlepes)==1 & all(ix == ixx)) { break }					# Ha visszatért a legelejére, akkor álljon meg
-		  while (CS == 1) {			# addig csinálja míg vagy az alapszintre ér, vagy pedig egy szintet visszalépve még léphet tovább
-			   if (any(apply(ment.ix, 1, function(x) all(x == ix)))) {	# Ha már volt az adott állapot, akkor lépjen egy szintet vissza és lépjen tovább
-				    if (length(szintlepes)==1 & all(ix == ixx)) { 
-					     CS0 <- 0
-					     break 
-				    } else {						# visszalépett egyet és léptet egyet
-					     szintlepes[[length(szintlepes)]]	<- NULL
-					     ix 		<- szintlepes[[length(szintlepes)]][["ix.tmp"]]
-					     holSTOP	<- szintlepes[[length(szintlepes)]][["holSTOP.base"]]
-					     if (holSTOP > 1 ) {  						# tehát ha nem az elsőre ugrott vissza
-						      ix <- c(ix[1:(holSTOP-1)], ix[holSTOP:hossz][c((hossz-holSTOP+1), 1:(hossz-holSTOP))])	# léptetek egyet
-						      szintlepes[[length(szintlepes)]][["ix.tmp"]]		<- ix
-					     } else {
-						      ix <- ix[c(hossz, 1:(hossz-1))]					# az első szinten is léptetek egyet
-						      szintlepes[[length(szintlepes)]][["ix.tmp"]]		<- ix
-					     }
-				    }
-			   } else {
-				    CS <- 0
-			   }
-		  }
-	 }
-	 xx	<- data.frame(cbind(ment.rv, ment.str))
-	 geginiMax <- suppressWarnings(max(apply(xx, 1, function(x) gegini(data.frame(p=x[1:(length(x)/2)], k=x[((length(x)/2)+1):length(x)])))))
-	 class(geginiMax) <- "geginiMax"
-	 geginiMax
+  while (CS0 == 1) {
+    CS <- 1
+    szintlepes[[length(szintlepes)]][["ix.tmp"]]<- ix
+    szintlepes[[length(szintlepes)]][["holSTOP.base"]]<- holSTOP
+#df.generator(ix)
+    cummulalt <- cumsum(strukt[ix])
+    holSTOP <- min(which(cummulalt >= RV))
+    ment.str<- rbind(ment.str, strukt[ix])
+    if (holSTOP > 1) {
+      ment.rv <- rbind(ment.rv, c(strukt[ix][1:holSTOP-1], RV-cummulalt[holSTOP-1], rep(0, hossz-holSTOP)))
+    } else {
+      ment.rv<- rbind(ment.rv, c(RV, rep(0, hossz-1)))
+    }
+    ment.ix<- rbind(ment.ix, ix)
+    
+    if (holSTOP > szintlepes[[length(szintlepes)]][["holSTOP.base"]] & (holSTOP != hossz)) {  # tehát ha nagyobb szintre lép, és az nem az utolsó szint
+      szintlepes[[length(szintlepes)+1]]<- list()
+      szintlepes[[length(szintlepes)]][["holSTOP.base"]]<- holSTOP
+      ix <- c(ix[1:(holSTOP-1)], ix[holSTOP:hossz][c((hossz-holSTOP+1), 1:(hossz-holSTOP))])# léptetek egyet
+      szintlepes[[length(szintlepes)]][["ix.tmp"]]<- ix
+    } else {# ha a végére ért, vagy ha azonos szinten maradt
+      if (holSTOP != hossz & holSTOP != 1) {
+        holSTOP<- szintlepes[[length(szintlepes)]][["holSTOP.base"]]
+        ix <- c(ix[1:(holSTOP-1)], ix[holSTOP:hossz][c((hossz-holSTOP+1), 1:(hossz-holSTOP))])
+      } else {
+        if (holSTOP == hossz) {
+          if (length(szintlepes) > 1) { # Ha a végére esik a telítődés, de nem alapból, akkor önmaga marad (következő szintre fog lépni
+            ix <- ix
+          } else {
+            ix <- ix[c(hossz, 1:(hossz-1))]
+            holSTOP<- szintlepes[[length(szintlepes)]][["holSTOP.base"]]
+            CS <- 0
+          }
+        } else {
+          ix <- ix[c(hossz, 1:(hossz-1))]
+        }
+      }
+    } 
+    if (length(szintlepes)==1 & all(ix == ixx)) { break }# Ha visszatért a legelejére, akkor álljon meg
+    while (CS == 1) {# addig csinálja míg vagy az alapszintre ér, vagy pedig egy szintet visszalépve még léphet tovább
+      if (any(apply(ment.ix, 1, function(x) all(x == ix)))) {# Ha már volt az adott állapot, akkor lépjen egy szintet vissza és lépjen tovább
+        if (length(szintlepes)==1 & all(ix == ixx)) { 
+          CS0 <- 0
+          break 
+        } else {# visszalépett egyet és léptet egyet
+          szintlepes[[length(szintlepes)]]<- NULL
+          ix <- szintlepes[[length(szintlepes)]][["ix.tmp"]]
+          holSTOP<- szintlepes[[length(szintlepes)]][["holSTOP.base"]]
+          if (holSTOP > 1 ) {  # tehát ha nem az elsőre ugrott vissza
+            ix <- c(ix[1:(holSTOP-1)], ix[holSTOP:hossz][c((hossz-holSTOP+1), 1:(hossz-holSTOP))])# léptetek egyet
+            szintlepes[[length(szintlepes)]][["ix.tmp"]]<- ix
+          } else {
+            ix <- ix[c(hossz, 1:(hossz-1))]# az első szinten is léptetek egyet
+            szintlepes[[length(szintlepes)]][["ix.tmp"]]<- ix
+          }
+        }
+      } else {
+        CS <- 0
+      }
+    }
+  }
+  xx<- data.frame(cbind(ment.rv, ment.str))
+  geginiMax <- suppressWarnings(max(apply(xx, 1, function(x) gegini(data.frame(p=x[1:(length(x)/2)], k=x[((length(x)/2)+1):length(x)])))))
+  class(geginiMax) <- "geginiMax"
+  geginiMax
 }
