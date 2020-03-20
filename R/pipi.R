@@ -1,4 +1,3 @@
-
 #' Calculate the PiPi Inequality Index
 #'
 #' @aliases pipi
@@ -75,6 +74,7 @@ PiPi.Test <- function(dta=NULL, ns=100, prev=NULL, .progress=TRUE, prob=.95, ...
     prev$StrMin0 <- c(prev$StrMin0, cache$StrMin)
   }
   if (.progress) {close(pb) }
+  prev$prob <- prob
   prev$PiPi0.mean <- mean(prev$PiPi0)
   prev$PiPi0.median <- median(prev$PiPi0)
   q<- c((1-prob)/2, (1-(1-prob)/2))
