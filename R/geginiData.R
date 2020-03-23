@@ -1,6 +1,6 @@
-#' Data manipulation method for PiPi package
+#' Data Manipulation Method for PiPi package
 #' 
-#' \code{geginiData} creates aggregated 'geginiData' object from individual level data.
+#' \code{geginiData} creates aggregated \code{geginiData} object from individual level data.
 #' 
 #' @param srvData a data.frame; it contains the original survey 
 #'   (individual-level) data. (E.g. ESS data from https://www.europeansocialsurvey.org/)

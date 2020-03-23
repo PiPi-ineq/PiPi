@@ -34,7 +34,9 @@ PiPi <- function(dta) {
 }
 
 
-#' A permutation test for PiPi statistic calculated by using \code{ns} random permutations of
+#' A Permutation Test for PiPi Statistic
+#'
+#' The permutation test is calculated by using \code{ns} random permutations of
 #' \code{dta} data for the given social structure, to establish the rank of the observed statistic
 #' in relation to the \code{ns} simulated values. 
 #' 

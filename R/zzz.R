@@ -13,7 +13,7 @@
 NULL
 
 
-#' Example data set
+#' Example Data Set
 #'
 #' An example simulated data set containing political participation, education level and country.
 #' The variables are as follows:
