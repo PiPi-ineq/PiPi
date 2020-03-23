@@ -100,7 +100,7 @@ gegini <- function(df=NULL, p=NULL, k=NULL, normalize = TRUE, plot=FALSE, return
 #' @param xlab character string; the label of the \code{x} axis
 #' @param ylab character string; the label of the \code{y} axis
 #' @param main character string; the title of the plot  
-#' @param texts logical flag; if \code{TRUE} (the default), #TODO ...finish
+#' @param texts logical flag; if \code{TRUE} (the default) the plot will contain the levels of the social structure (category names)
 #' @param main2 character string; the subtitle of the plot
 #' @param ... further arguments passed to \code{plot}
 #' @seealso See \code{\link{gegini}} for example.
