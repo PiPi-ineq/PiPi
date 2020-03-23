@@ -16,7 +16,3 @@ if (requireNamespace("remotes", quietly = TRUE)) {
   stop("Install the 'remotes' package")
 }
 ```
-
-## Note
-
-This is a work in progress - look for TODOs in the code base.
