@@ -1,9 +1,7 @@
-
 #' Calculate the PiPi Inequality Index
 #'
 #' @aliases pipi
 #' @param dta an object of class \code{\link{geginiData}}
-#' @param ... unused (TODO)
 #' @details PiPi is an inequality index which takes into consideration 
 #'   the given social constellation:
 #'   \enumerate{
@@ -24,8 +22,7 @@
 #' @export
 #' @example inst/examples/pipi_ex.R
 #'   
-#TODO: the function does not have this parameter: #minMethod: can be "structural" or "statistical". The default is "structural" - the determination of the minimum value based on only structural factors. In case of "statistical", the StrMin value is an expected value of the minimum based on resampling.
-PiPi <- function(dta=list(), ...) {
+PiPi <- function(dta) {
   baseValue<- gegini(df=dta$df)
   maxValue<- as.numeric(geginiMax(strukt=dta$str, rv=dta$rv))
   minValue<- as.numeric(gegini(data.frame(p=round(dta$rv*dta[['df']]$k)/sum(round(dta$rv*dta[['df']]$k)), k=dta[['df']]$k)))
@@ -37,7 +34,11 @@ PiPi <- function(dta=list(), ...) {
 }
 
 
-#' Calculate and Compare PiPi Values 
+#' A permutation test for PiPi statistic calculated by using \code{ns} random permutations of
+#' \code{dta} data for the given social structure, to establish the rank of the observed statistic
+#' in relation to the \code{ns} simulated values. 
+#' 
+#' This statistical method tests whether observed PiPi differs from 0.
 #' 
 #' @param dta an object of class \code{\link{geginiData}}
 #' @param ns integerish value; the number of bootstrap replicates
@@ -49,7 +50,6 @@ PiPi <- function(dta=list(), ...) {
 #' @return an object of class \code{PiPi.test}
 #' @export 
 #' @example inst/examples/pipitest_ex.R
-#TODO: How does this function relate to PiPiBagging()?
 PiPi.Test <- function(dta=NULL, ns=100, prev=NULL, .progress=TRUE, prob=.95, ...) {
   if (is.null(prev)) {
     prev <- list(PiPi0=NULL, geginiRaw0=NULL, StrMax0=NULL, StrMin0=NULL)
