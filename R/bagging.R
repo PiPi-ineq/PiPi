@@ -51,6 +51,7 @@ PiPiBagging <- function(dta=NULL, ns=100, prev=NULL, .progress=TRUE, prob=0.95, 
     prev$StrMin   <- c(prev$StrMin, cache$StrMin)
   }
   if (.progress) {close(pb) }
+  prev$prob			 <- prob
   prev$PiPi.mean     <- mean(prev$PiPi)
   prev$PiPi.median   <- median(prev$PiPi)
   q  <- c((1-prob)/2, (1-(1-prob)/2))
