@@ -11,7 +11,7 @@
 #' The index is normalized, so that it takes values from 0 to 1.
 #' @references Susánszky, Somogyi and Tóth, manuscript
 #' @return A list of class \code{PiPi}:
-#' \itemize{
+#' \describe{
 #'   \item{data}{The input table}
 #'   \item{PiPi}{Numeric value [0,1] with the same interpretation as the Gini-index, where 0 means there is no inequality between groups, and 1 means perfect inequality.}
 #'   \item{geginiRaw}{gegini value without structural compensation}

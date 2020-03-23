@@ -18,10 +18,10 @@ NULL
 #' An example simulated data set containing political participation, education level and country.
 #' The variables are as follows:
 #'
-#' \itemize{
-#'   \item vote. political participation. Factor w/ 2 levels "vote","not-vote"
-#'   \item edu. education level. Factor w/ 3 levels "primary","secondary","tertiary"
-#'   \item cntry. country. Factor w/ 4 levels "A","B","C","D"
+#' \describe{
+#'   \item{vote}{political participation. Factor w/ 2 levels "vote","not-vote"}
+#'   \item{edu}{ education level. Factor w/ 3 levels "primary","secondary","tertiary"}
+#'   \item{cntry}{country. Factor w/ 4 levels "A","B","C","D"}
 #' }
 #'
 #' @docType data

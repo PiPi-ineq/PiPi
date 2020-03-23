@@ -18,7 +18,7 @@
 #'   \code{plot} is \code{FALSE}. 
 #' @return If \code{returnTable} is \code{FALSE}, an object of class \code{gegini}: The 
 #'   uncorrected value of the gegini-index. Otherwise, a list object of class \code{geginiTable}:
-#' \itemize{
+#' \describe{
 #'   \item{gegini}{an object of class \code{gegini}, the uncorrected value of the gegini-index}
 #'   \item{inequalityTable}{the ordered table by which the gegini-index and plot are defined}
 #' }
