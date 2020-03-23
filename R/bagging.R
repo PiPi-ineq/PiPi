@@ -10,12 +10,17 @@
 #' @param prob numeric value in the range of [0, 1]; the confidence level
 #' @param ... further arguments passed to \code{PiPi}
 #' @return An object of class \code{PiPiBag}:
-#' \itemize{
-#'   \item{PiPiOriginal}{an object of class \code{PiPi} for the original input data}
-#'   \item{PiPi}{vector of PiPi values for each replication sample}
-#'   \item{geginiRaw}{vector of geginiRaw values for each replication sample}
-#'   \item{StrMax}{vector of StrMax (structural maximum) values for each replication sample}
-#'   \item{StrMin}{vector of StrMin (structural minimum) values  for each replication sample}
+#' \describe{
+#'   \item{PiPi}{PiPi values for every iteration}
+#'   \item{geginiRaw}{GEGINI values for every iteration}
+#'   \item{StrMax}{maximum values of PiPi for every iteration}
+#'   \item{StrMin}{minimum values of PiPi for every iteration}
+#'   \item{PiPiOriginal}{the observed value of PiPi (class of \code{PiPi})}
+#'   \item{prob}{value of probability}
+#'   \item{PiPi.mean}{mean of all PiPi values (iteration)}
+#'   \item{PiPi.median}{median of all PiPi values (iteration)}
+#'   \item{PiPi.CI_lower}{lower limit of the Confidence Interval for the PiPi mean, where the limit comes from the \code{prob} parameter}
+#'   \item{PiPi.CI_upper}{upper limit of the Confidence Interval for the PiPi mean, where the limit comes from the \code{prob} parameter}
 #' }
 #' @references 
 #' Kolenikov, S. (2010). Resampling Variance Estimation for Complex Survey Data. The Stata Journal, 
@@ -25,7 +30,6 @@
 #'   Complex Survey Data: Theory and Applications (pp. 87-106). Emerald Publishing Limited.  
 #' @export
 #' @example inst/examples/bagging_ex.R
-#TODO: the return value has undocumented slots
 PiPiBagging <- function(dta=NULL, ns=100, prev=NULL, .progress=TRUE, prob=0.95, ...) {
   if (is.null(prev)) {
     prev <- list(PiPi=NULL, geginiRaw=NULL, StrMax=NULL, StrMin=NULL)
