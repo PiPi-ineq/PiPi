@@ -15,7 +15,7 @@ NULL
 
 #' Example data set #TODO
 #'
-#' An example data set containing political participation, education level and country.
+#' An example simulated data set containing political participation, education level and country.
 #' The variables are as follows:
 #'
 #' \itemize{
