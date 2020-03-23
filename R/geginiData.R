@@ -1,5 +1,6 @@
-
-#' TODO: Describe in one short sentence what this function is good for
+#' Data manipulation method for PiPi package
+#' 
+#' \code{geginiData} creates aggregated 'geginiData' object from individual level data.
 #' 
 #' @param srvData a data.frame; it contains the original survey 
 #'   (individual-level) data. (E.g. ESS data from https://www.europeansocialsurvey.org/)
