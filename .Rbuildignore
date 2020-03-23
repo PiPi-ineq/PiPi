@@ -3,3 +3,4 @@
 ^\.project$
 ^\.dbeaver$
 ^LICENSE\.md$
+^cran-comments\.md$
