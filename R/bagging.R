@@ -65,6 +65,22 @@ PiPiBagging <- function(dta=NULL, ns=100, prev=NULL, .progress=TRUE, prob=0.95, 
   prev
 }
 
+
+#' Summary Method for PiPiBag
+#'
+#' @param object an object of class \code{PiPiBag}
+#' @param ... not used at the moment
+#' @return the original object of class \code{PiPiBag} (invisible)
+#' @export
+summary.PiPiBag <- function(object, ...) {
+  cat(paste0('The observed level of inequality is ', round(object$PiPiOriginal$PiPi*100,2), '%.\n'))
+  cat(paste0('The mean of the bootstrapped PiPi values is ', round(object$PiPi.mean*100,2), '% and the median is ', round(object$PiPi.median*100,2), '%.\n'))
+  cat(paste0('The ', object$prob*100, '% Confidence Interval for the observed PiPi is ', round(object$PiPi.CI_lower*100,2), '% - ', round(object$PiPi.CI_upper*100,2), '%.\n'))
+  cat(paste0('Number of simulations is ', length(object$PiPi), '.\n'))
+  invisible(object)
+}
+
+
 #' Compare PiPi Bags Objects
 #' 
 #' \code{PiPibags.Test} runs two-sample Wilcoxon (Mann-Whitney) test to decide whether 

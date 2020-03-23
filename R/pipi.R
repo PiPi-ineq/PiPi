@@ -34,6 +34,20 @@ PiPi <- function(dta) {
 }
 
 
+#' Summary Method for PiPi
+#'
+#' @param object an object of class \code{PiPi}
+#' @param ... not used at the moment
+#' @return the original object of class \code{PiPi} (invisible)
+#' @export
+summary.PiPi <- function(object, ...) {
+  cat(paste0('The level of inequality is ', round(object$PiPi*100,2), '%.\n'))
+  cat('The order of social groups:\n')
+  print(object$data$df[order(object$data$df$p/object$data$df$k), ])
+  invisible(object)
+}
+
+
 #' A Permutation Test for PiPi Statistic
 #'
 #' The permutation test is calculated by using \code{ns} random permutations of
@@ -88,4 +102,19 @@ PiPi.Test <- function(dta=NULL, ns=100, prev=NULL, .progress=TRUE, prob=.95, ...
   print(prev$wilcox0)
   class(prev) <- 'PiPi.Test'
   prev
+}
+
+
+#' Summary Method for PiPi.Test
+#'
+#' @param object an object of class \code{PiPi.test}
+#' @param ... not used at the moment
+#' @return the original object of class \code{PiPi.test} (invisible)
+#' @export
+summary.PiPi.Test <- function(object, ...) {
+  cat(paste0('The observed level of inequality is ', round(object$PiPiOriginal$PiPi*100, 2), '%.\n'))
+  cat(paste0('The ', object$prob*100, '% Confidence Interval for minimum value of the PiPi assuming total randomness: ', round(object$PiPi0.CI_lower*100, 2), '% - ', round(object$PiPi0.CI_upper*100, 2), '%.\n'))
+  cat(paste0('According to the non-parametric Wilcoxon test the observed PiPi value significantly ', ifelse(object$wilcox0$p.value<(1-object$prob), 'differs', 'not differs'), ' from 0.\n (0 means the random distribution of "political participants" across the social categories.)\n'))  
+  cat(paste0('Number of simulations: ', length(object$PiPi0), '.\n'))
+  invisible(object)
 }
