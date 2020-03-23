@@ -2,16 +2,16 @@
 #' 
 #' \code{gegini} calculates and optionally displays the generalized Educational GINI (GEGINI) 
 #' value as a measure of inequality (see References).
-#' @param df a data.frame which contains \code{'p'} and \code{'k'} columns. If \code{df} 
+#' @param df a data.frame which contains \code{p} and \code{k} columns. If \code{df}
 #'   is \code{NULL}, \code{p} and \code{k} must be provided (see below).
-#' @param p a numeric vector; each value refers to the percentage of a given group 
-#'   relative to the total number of participant. The sum of \code{p} should be 1 (=100%) or 
-#'   \code{normalize} must be \code{TRUE} (see below).
-#' @param k a numeric vector; each value refers to the percentage of a given group 
-#'   relative to the total. (TODO: how does this differ from 'p'?) The sum of \code{k} should be 1 (=100%) or 
-#'   \code{normalize} must be \code{TRUE} (see below).
-#' @param normalize logical flag whether \code{p} and \code{k} must be rescaled to 100% 
-#'   (defaults to \code{TRUE})
+#' @param p a numeric vector; each value refers to the share of the participants (e.g. voters, demonstrators)
+#'   in a given social group (e.g. 30\% of the participants are women).
+#'   The sum of \code{p} should be 1 (=100\%) or \code{normalize} must be \code{TRUE} (see below).
+#' @param k a numeric vector; each value refers to the share of a given group in a population
+#'   (e.g. 50\% of the population are women).
+#'   The sum of \code{k} should be 1 (=100\%) or \code{normalize} must be \code{TRUE} (see below).
+#' @param normalize logical flag whether \code{p} and \code{k} must be rescaled to 100\%
+#'   (defaults to \code{TRUE}).
 #' @param plot logical flag whether to plot the Lorenz curve (default: \code{FALSE}) 
 #' @param returnTable logical flag whether to return the ordered table (defaults to \code{FALSE} 
 #' @param ... further arguments passed to \code{\link{plot.gegini}}. Ignored if 
