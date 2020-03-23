@@ -10,9 +10,5 @@ pre-defined social classes (e.g. level of education).
 ## Install
 
 ```r
-if (requireNamespace("remotes", quietly = TRUE)) {
-  remotes::install_gitlab("kogentum/pipi")
-} else {
-  stop("Install the 'remotes' package")
-}
+install.packages("PiPi")
 ```
