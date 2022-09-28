@@ -10,5 +10,6 @@ pre-defined social classes (e.g. level of education).
 ## Install
 
 ```r
-install.packages("PiPi")
+library(devtools)
+install_github("PiPi-ineq/PiPi")
 ```
